@@ -8,12 +8,12 @@ const OTPschema = new mongoose.Schema({
         required: true
     },
     otp:{
-        type: String,
+        type: String, 
         required: true
     },
     createdAt:{
-        type: Date,
-        default: Date.now(),
+        type: Date, 
+        default: Date.now(), 
         expires:  5 * 60            //otp aur email fields ke documents ko yeh affect nahi karega. Yani 6 minute ke baad bhi otp aur email fields ke documents database mein bane raheinge, lekin createdAt field ke documents automatically delete nahi honge
     } 
 

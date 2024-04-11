@@ -24,6 +24,7 @@ const {
   LECTURE_COMPLETION_API,
 } = courseEndpoints
 
+
 export const getAllCourses = async () => {
   const toastId = toast.loading("Loading...")
   let result = []

@@ -141,7 +141,7 @@ const showAllCourse =async (req, res) => {
     }catch(error){
         return res.status(404).json({
             success: false,
-            message: 'Failed to fetch courses details',
+            message: 'Failed to fetch all  courses details',
             error: error,
         })
 

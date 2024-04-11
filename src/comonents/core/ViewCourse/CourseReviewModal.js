@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux'
 import IconBtn from '../../common/IconBtn';
 import { createRating } from '../../../services/operations/courseDetailsAPI';
-import ReactStars from "react-rating-stars-component";
+// import ReactStars from "react-rating-stars-component";
 
 const CourseReviewModal = ({setReviewModal}) => {
     const {user} = useSelector((state)=>state.profile);
@@ -71,12 +71,12 @@ const CourseReviewModal = ({setReviewModal}) => {
                 onSubmit={handleSubmit(onSubmit)}
                 className='mt-6 flex flex-col items-center'>
 
-                    <ReactStars 
+                    {/* <ReactStars 
                         count={5}
                         onChange={ratingChanged}
                         size={24}
                         activeColor="#ffd700"
-                    />
+                    /> */}
 
                     <div>
                         <label htmlFor='courseExperience'>

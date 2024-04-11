@@ -10,7 +10,7 @@ function CourseSubSectionAccordion({ subSec }) {
           <span>
             <HiOutlineVideoCamera />
           </span>
-          <p>{subSec?.title}</p>
+          <p>{subSec.title}</p>
         </div>
       </div>
     </div>

@@ -56,7 +56,7 @@ export default function NestedView({ handleChangeEditSectionName }) {
         className="rounded-lg bg-richblack-700 p-6 px-8"
         id="nestedViewContainer"
       >
-        {course?.courseContent.map((section) => (
+        {course?.courseContent?.map((section) => (
           // Section Dropdown
           <details key={section._id} open>
             {/* Section Dropdown Content */}
@@ -98,7 +98,7 @@ export default function NestedView({ handleChangeEditSectionName }) {
             </summary>
             <div className="px-6 pb-4">
               {/* Render All Sub Sections Within a Section */}
-              {section.subSection.map((data) => (
+              {section.subSection?.map((data) => ( 
                 <div
                   key={data._id}
                   onClick={() => setViewSubSection(data)}

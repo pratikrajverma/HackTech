@@ -7,8 +7,15 @@ import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 
 import { addToCart } from "../../../slices/cartSlice"
+ 
 import { ACCOUNT_TYPE } from "../../../utils/constants"
 
+// const CourseIncludes = [
+//   "8 hours on-demand video",
+//   "Full Lifetime access",
+//   "Access on Mobile and TV",
+//   "Certificate of completion",
+// ]
 
 function CourseDetailsCard({ course, setConfirmationModal, handleBuyCourse }) {
   const { user } = useSelector((state) => state.profile)
@@ -28,7 +35,7 @@ function CourseDetailsCard({ course, setConfirmationModal, handleBuyCourse }) {
   }
 
   const handleAddToCart = () => {
-    if (user && user?.accountType === ACCOUNT_TYPE.INSTRUCTOR) {
+    if (user && user.accountType === ACCOUNT_TYPE.INSTRUCTOR) {
       toast.error("You are an Instructor. You can't buy a course.")
       return
     }
@@ -46,7 +53,7 @@ function CourseDetailsCard({ course, setConfirmationModal, handleBuyCourse }) {
     })
   }
 
-  // console.log("Student already enrolled ", course?.studentsEnroled, user?._id)
+  // console.log("Student already enrolled ", course.studentsEnroled, user._id)
 
   return (
     <>
@@ -68,16 +75,16 @@ function CourseDetailsCard({ course, setConfirmationModal, handleBuyCourse }) {
             <button
               className="yellowButton"
               onClick={
-                user && course.studentsEnrolled.includes(user?._id)
+                user && course.studentsEnroled.includes(user._id)
                   ? () => navigate("/dashboard/enrolled-courses")
                   : handleBuyCourse
               }
             >
-              {user && course.studentsEnrolled.includes(user?._id)
+              {user && course.studentsEnroled.includes(user._id)
                 ? "Go To Course"
                 : "Buy Now"}
             </button>
-            {(!user || !course.studentsEnrolled.includes(user?._id)) && (
+            {(!user || !course.studentsEnroled.includes(user._id)) && (
               <button onClick={handleAddToCart} className="blackButton">
                 Add to Cart
               </button>
@@ -94,7 +101,7 @@ function CourseDetailsCard({ course, setConfirmationModal, handleBuyCourse }) {
               This Course Includes :
             </p>
             <div className="flex flex-col gap-3 text-sm text-caribbeangreen-100">
-              {course.instructions?.map((item, i) => {
+              {course.instructions.map((item, i) => {
                 return (
                   <p className={`flex gap-2`} key={i}>
                     <BsFillCaretRightFill />

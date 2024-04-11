@@ -4,9 +4,9 @@ const Category = require("../models/Category");
 const createCategory = async (req, res) => {
 	try {
 		const { name, description } = req.body;
-		if (!name) {
+		if (!name) { 
 			return res.status(400).json({
-					success: false,
+					success: false, 
 					message: "All fields are required" 
 				});
 		} 

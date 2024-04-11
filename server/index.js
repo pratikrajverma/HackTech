@@ -24,7 +24,7 @@ database.connectDB();
 cloudinaryConnect()
  
 
-//middleware
+//middleware 
 
 app.use(express.json());
 app.use(cookieParser());

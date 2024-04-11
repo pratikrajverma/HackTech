@@ -33,7 +33,7 @@ export default function CourseBuilderForm() {
 
   // handle form submission
   const onSubmit = async (data) => {
-    // console.log(data)
+    console.log(data)
     setLoading(true)
 
     let result
@@ -47,8 +47,9 @@ export default function CourseBuilderForm() {
         },
         token
       )
-      // console.log("edit", result)
-    } else {
+      console.log("edit", result)
+    } 
+    else {
       result = await createSection(
         {
           sectionName: data.sectionName,
@@ -57,8 +58,10 @@ export default function CourseBuilderForm() {
         token
       )
     }
+
+
     if (result) {
-      // console.log("section result", result)
+      console.log("section result", result)
       dispatch(setCourse(result))
       setEditSectionName(null)
       setValue("sectionName", "")
@@ -81,6 +84,7 @@ export default function CourseBuilderForm() {
   }
 
   const goToNext = () => {
+    console.log('courses : ',course)
     if (course.courseContent.length === 0) {
       toast.error("Please add atleast one section")
       return
@@ -143,6 +147,7 @@ export default function CourseBuilderForm() {
       {course.courseContent.length > 0 && (
         <NestedView handleChangeEditSectionName={handleChangeEditSectionName} />
       )}
+      
       {/* Next Prev Button */}
       <div className="flex justify-end gap-x-3">
         <button
