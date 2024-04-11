@@ -7,23 +7,23 @@ const {uploadImage} = require('../utils/imageUploader');
 const createCourse = async(req,res)=>{
     try{
         //fetch data
-        let {courseName, courseDescription, whatYouWillLearn, price, tag, category, status, instructions} = req.body;
+        let {courseName, courseDescription, whatYouWillLearn, price, tag, category, status, instructions  } = req.body;
          
         //get thumbnail  
-        console.log('data he ',courseName,courseDescription, whatYouWillLearn, price, tag, category);
+        console.log('data he ',courseName,courseDescription, whatYouWillLearn, price, tag, category );
         const thumbnail = req.files.thumbnail;
         // const thumbnail = '../../src/assets/Images/Instructor.png';
 
         console.log('thumnail ',thumbnail );
            
         //validation
-        if(!courseDescription || !courseName || !price || !tag ||!whatYouWillLearn ||!category  ){
+        if(!courseDescription || !courseName || !price || !tag ||!whatYouWillLearn ||!category   ){
             return res.status(400).json({
                 success: false, 
                 message: 'all fields of course are required'
             })
         }
-        console.log('sahi he ',)
+      
 
         if (!status  ) {
 			status = "Draft";
@@ -31,7 +31,7 @@ const createCourse = async(req,res)=>{
 
         //find  instructor details
         const userId = req.user.id;     //ye user object auth middleware se pass kiya ja raha he req object me jab authentication kiya ja raha tha
-        const instructorDetails = await User.findById(userId,    {accountType: "Instructor"});         // Yahaan User.findById(userId, {accountType: "Instructor"}) ke dwara, aap userId ke sath User model se details fetch kar rahe hain, lekin aap sirf un documents ko fetch kar rahe hain jo accountType ki value "Instructor" hai.
+        const instructorDetails = await User.findById(userId );         // Yahaan User.findById(userId, {accountType: "Instructor"}) ke dwara, aap userId ke sath User model se details fetch kar rahe hain, lekin aap sirf un documents ko fetch kar rahe hain jo accountType ki value "Instructor" hai.
     
 
 
@@ -61,6 +61,13 @@ const createCourse = async(req,res)=>{
         //upload image to cloudinary
         const thumbnailImage = await uploadImage(thumbnail, process.env.FOLDER_NAME)
 
+
+
+        const pincode = instructorDetails.pincode; 
+        // console.log("pincode",pincode);
+        // console.log('instructor details',instructorDetails);
+
+
         //create entry for new course
         const newCourse = await Course.create({
             courseName,
@@ -73,6 +80,7 @@ const createCourse = async(req,res)=>{
             thumbnail: thumbnailImage.secure_url,
             status: status,
 			instructions: instructions,
+            pincode:pincode
             
             
         })
@@ -117,8 +125,9 @@ const showAllCourse =async (req, res) => {
                                                 price:true,
                                                 thumbnail:true,
                                                 instructor:true,
-                                                ratingAndReview:true,
-                                                studentsEnrolled:true, }).populate('instructor').exec();   
+                                                // ratingAndReview:true,
+                                                // studentsEnrolled:true,
+                                             }).populate('instructor').exec();   
 
 
         return res.status(200).json({

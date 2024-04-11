@@ -50,6 +50,7 @@ export function signUp(
   password,
   confirmPassword,
   otp,
+  pincode,
   navigate
 ) {
   return async (dispatch) => {
@@ -64,7 +65,8 @@ export function signUp(
             password,
             confirmPassword,
             accountType,
-            otp 
+            otp,
+            pincode 
       })
 
       console.log("SIGNUP API RESPONSE............", response)

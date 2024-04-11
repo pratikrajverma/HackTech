@@ -91,13 +91,14 @@ const signUp = async (req, res) => {
             confirmPassword,
             accountType,
             otp,
+            pincode,
              
         } = req.body;
 
         // console.log('backend me aaya huaa data he ',firstname, lastname, email, password, confirmPassword, accountType, otp)
 
         //validation ho raha he ki koi input khali to nahi he agar ha to return false kar do aur user ko kaho Please fill all the fields
-        if (!firstname || !lastname || !email || !password || !confirmPassword  || !otp) {
+        if (!firstname || !lastname || !email || !password || !confirmPassword  || !otp || !pincode) {
             return res.status(403).json({
                 success: false,
                 message: 'Please fill all the fields'
@@ -155,10 +156,10 @@ const signUp = async (req, res) => {
 
             //profile entry
             const profileDetails = await Profile.create({
-                gender: null,
-                dateOfBirth: null,
-                about: null,
-                contactNumber: null,
+                gender: "",
+                dateOfBirth: "",
+                about: "",
+                contactNumber: "",
             })
 
 
@@ -170,6 +171,7 @@ const signUp = async (req, res) => {
             accountType,
             additionDetails: profileDetails._id,
             image: `https://api.dicebear.com/5.x/initials/svg?seed=${firstname} ${lastname}`,
+            pincode,
 
         });
 

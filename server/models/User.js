@@ -32,12 +32,12 @@ const userSchema = new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
          
         ref:'Profile'
-    }, 
+    },  
     courses:[
         {
             type:mongoose.Schema.Types.ObjectId,
             ref:'Course'
-        }
+        } 
     ],
     image:{
         type:String,
@@ -55,11 +55,11 @@ const userSchema = new mongoose.Schema({
     resetPasswordExpires:{
         type:Date,
     },
-    // pincode:{
-    //     type:number 
-    //     // required:true,
+    pincode:{
+        type:String, 
+        required:true,
 
-    // }
+    }
     
 })
     

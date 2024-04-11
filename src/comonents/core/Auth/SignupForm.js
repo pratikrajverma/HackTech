@@ -22,12 +22,13 @@ function SignupForm() {
     email: "",
     password: "",
     confirmPassword: "",
+    pincode: "",
   })
 
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
-  const { firstname, lastname, email, password, confirmPassword } = formData;
+  const { firstname, lastname, email, password, confirmPassword, pincode } = formData;
 
   // Handle input fields, when some value changes
   const handleOnChange = (e) => {
@@ -66,6 +67,7 @@ function SignupForm() {
       email: "",
       password: "",
       confirmPassword: "",
+      pincode: "",
     })
     setAccountType(ACCOUNT_TYPE.STUDENT)
   }
@@ -203,6 +205,27 @@ function SignupForm() {
             </span>
           </label>
         </div>
+
+
+        <label className="w-full">
+          <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
+            Area Pin Code <sup className="text-pink-200">*</sup>
+          </p>
+          <input
+            required
+            type="text"
+            name="pincode"
+            value={pincode}
+            onChange={handleOnChange}
+            placeholder="Enter area pincode"
+            style={{
+              boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
+            }}
+            className="w-full rounded-[0.5rem] bg-richblack-800 p-[12px] text-richblack-5"
+          />
+        </label>     
+
+
         <button
           type="submit"
           className="mt-6 rounded-[8px] bg-yellow-50 py-[8px] px-[12px] font-medium text-richblack-900"

@@ -64,10 +64,10 @@ const CourseSchema = new mongoose.Schema({
 		type: String,
 		enum: ["Draft", "Published"],
 	},
-    // pincode:{
-    //     type: Number,
-    //     // required: true
-    // }
+    pincode:{
+        type: String,
+        required: true
+    }
     
 
 
