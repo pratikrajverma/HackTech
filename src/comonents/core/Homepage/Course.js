@@ -8,7 +8,7 @@ const Course = () => {
 
    function courseshandler()
    {
-       navigate('/coursefilter');
+       navigate('/catalog/web-developement');
    }
 
 

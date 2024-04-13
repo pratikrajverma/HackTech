@@ -21,10 +21,10 @@ const PORT = process.env.PORT || 4000;
 database.connectDB();
 
 //cloudinary connection
-cloudinaryConnect()
+cloudinaryConnect() 
  
-
-//middleware 
+    
+//middleware   
 
 app.use(express.json());
 app.use(cookieParser());

@@ -136,13 +136,13 @@ const signUp = async (req, res) => {
             console.log(' otp not found'); 
             return res.status(400).json({
                 success: false, 
-                message: 'OTP not found'
+                message: 'OTP not found'  
             }) 
         } else if(otp !== response[0].otp) {      //  Yeh condition check karta hai ki user dvara diya gaya OTP, jo otp variable mein hai, kya match karta hai recentOtp object mein retrieve kiya gaya OTP ke saath. Agar match nahi hota, toh yeh condition true hoti hai.
             //Ivalid otp
             return res.status(400).json({
                 success: false,
-                message: 'Invalid OTP'
+                message: 'Invalid OTP'  
             })
         }
 
@@ -159,8 +159,8 @@ const signUp = async (req, res) => {
                 gender: "",
                 dateOfBirth: "",
                 about: "",
-                contactNumber: "",
-            })
+                contactNumber: ""
+              })
 
 
         const user = await User.create({
@@ -172,10 +172,10 @@ const signUp = async (req, res) => {
             additionDetails: profileDetails._id,
             image: `https://api.dicebear.com/5.x/initials/svg?seed=${firstname} ${lastname}`,
             pincode,
-
+ 
         });
 
-
+ 
         return res.status(200).json({
             success: true,
             message: 'User created successfully',
@@ -220,7 +220,7 @@ const login = async(req,res) => {
         //check user exist or not
         const  user = await User.findOne({email: email });
 
-        if(!user)
+        if(!user) 
         {
             return res.status(401).json({
                 success:false,

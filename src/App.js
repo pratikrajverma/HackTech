@@ -29,6 +29,7 @@ import VerifyEmail from "./pages/VarifyEmail"
 import ViewCourse from "./pages/ViewCourse"
 import { getUserDetails } from "./services/operations/profileAPI"
 import { ACCOUNT_TYPE } from "./utils/constants"
+import AllPeers from './comonents/core/peers/AllPeers'
 
 function App() {
   const dispatch = useDispatch() 
@@ -91,6 +92,14 @@ function App() {
             <OpenRoute>
               <VerifyEmail />
             </OpenRoute>
+          }
+        />
+
+
+        <Route
+          path="allPeers"
+          element={
+            <AllPeers/>
           }
         />
         {/* Private Route - for Only Logged in User */}

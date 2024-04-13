@@ -1,41 +1,48 @@
 import React, { useEffect, useState } from 'react'
 import Footer from '../comonents/common/Footer'
+ 
 import { useParams } from 'react-router-dom'
 import { apiConnector } from '../services/apiconnector';
 import { categories } from '../services/apis';
 import { getCatalogaPageData } from '../services/operations/pageAndComponentData';
-import Course_Card from '../comonents/core/Catalog/Course_Card';
+import Course_Card from '../comonents/core/Course/Catalog/Course_Card';
  
-import CourseSlider from '../comonents/core/Catalog/CourseSlider';
-// import CourseSlider from '../components/core/Catalog/CourseSlider';
+import CourseSlider from '../comonents/core/Course/Catalog/CourseSlider';
+ 
 import { useSelector } from "react-redux"
 import Error from "./Error"
-
+ 
 const Catalog = () => {
 
     const { loading } = useSelector((state) => state.profile)
   const { catalogName } = useParams()
   const [active, setActive] = useState(1)
-    const [catalogPageData, setCatalogPageData] = useState(null);
+    const [catalogPageData, setCatalogPageData] = useState("");
     const [categoryId, setCategoryId] = useState("");
 
     //Fetch all categories
     useEffect(()=> {
         const getCategories = async() => {
             const res = await apiConnector("GET", categories.CATEGORIES_API);
+            console.log('categories res : ',res);
             const category_id = 
-            res?.data?.data?.filter((ct) => ct.name.split(" ").join("-").toLowerCase() === catalogName)[0]._id;
+            res.data.data.filter((ct) => ct.name.split(" ").join("-").toLowerCase() === catalogName)[0]._id;
+            console.log('category_id  : ',category_id);
             setCategoryId(category_id);
         }
         getCategories();
     },[catalogName]);
+
 
     useEffect(() => {
         const getCategoryDetails = async() => {
             try{
                 const res = await getCatalogaPageData(categoryId);
                 console.log("PRinting res: ", res);
+                 
                 setCatalogPageData(res);
+                console.log('catalogPageData :' , catalogPageData);
+                
             }
             catch(error) {
                 console.log(error)
@@ -58,30 +65,32 @@ const Catalog = () => {
       if (!loading && !catalogPageData.success) {
         return <Error />
       }
-    
+      
+
       return (
-        <>
+        <div className=''>
           {/* Hero Section */}
           <div className=" box-content bg-richblack-800 px-4">
             <div className="mx-auto flex min-h-[260px] max-w-maxContentTab flex-col justify-center gap-4 lg:max-w-maxContent ">
               <p className="text-sm text-richblack-300">
                 {`Home / Catalog / `}
                 <span className="text-yellow-25">
-                  {catalogPageData?.data?.selectedCategory?.name}
+                  {catalogPageData.data.selectedCategory.name}
                 </span>
               </p>
               <p className="text-3xl text-richblack-5">
-                {catalogPageData?.data?.selectedCategory?.name}
+                {catalogPageData.data.selectedCategory.name}
               </p>
               <p className="max-w-[870px] text-richblack-200">
-                {catalogPageData?.data?.selectedCategory?.description}
+                {catalogPageData.data.selectedCategory.description}
               </p>
             </div>
           </div>
     
+
           {/* Section 1 */}
           <div className=" mx-auto box-content w-full max-w-maxContentTab px-4 py-12 lg:max-w-maxContent">
-            <div className="section_heading">Courses to get you started</div>
+            <div className="section_heading text-white">Courses to get you started</div>
             <div className="my-4 flex border-b border-b-richblack-600 text-sm">
               <p
                 className={`px-4 py-2 ${
@@ -104,26 +113,36 @@ const Catalog = () => {
                 New
               </p>
             </div>
+
             <div>
               <CourseSlider
-                Courses={catalogPageData?.data?.selectedCategory?.courses}
+                Courses={catalogPageData.data.selectedCategory.courses}
               />
             </div>
           </div>
+
+
           {/* Section 2 */}
-          <div className=" mx-auto box-content w-full max-w-maxContentTab px-4 py-12 lg:max-w-maxContent">
-            <div className="section_heading">
-              Top courses in {catalogPageData?.data?.differentCategory?.name}
+          {/* <div className=" mx-auto box-content w-full max-w-maxContentTab px-4 py-12 lg:max-w-maxContent">
+            <div className="section_heading text-white  ">
+              <p className='text-3xl p-2'>Top courses in</p> {catalogPageData.data.differentCategory.map((e)=>(
+                
+                <div className='text-1xl ' key={e._id}>
+                  {e.name}
+                </div>
+              ))}
+
             </div>
+
             <div className="py-8">
               <CourseSlider
-                Courses={catalogPageData?.data?.differentCategory?.courses}
+                Courses={catalogPageData.data.differentCategory.course}
               />
             </div>
-          </div>
+          </div> */}
     
           {/* Section 3 */}
-          <div className=" mx-auto box-content w-full max-w-maxContentTab px-4 py-12 lg:max-w-maxContent">
+          {/* <div className=" mx-auto box-content w-full max-w-maxContentTab px-4 py-12 lg:max-w-maxContent">
             <div className="section_heading">Frequently Bought</div>
             <div className="py-8">
               <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
@@ -134,10 +153,12 @@ const Catalog = () => {
                   ))}
               </div>
             </div>
-          </div>
+          </div> */}
     
-          <Footer />
-        </>
+          {/* <div className='bg-richblack-700'>
+            <Footer className='text-white' />
+          </div> */}
+        </div>
       )
     }
     

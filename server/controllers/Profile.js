@@ -6,45 +6,54 @@ const  {uploadImage} = require('../utils/imageUploader')
 
 
 const updateProfile = async (req, res) => {
-    try{    
-        //fetch data from req ki body
-        const {dateOfBirth="", about="", gender, contactNumber} = req.body;
-
-        // fetch userId
-        const id = req.user.id;
-
-        //validation
-        // if( !gender ||!contactNumber){
-        //     return res.status(400).json({
-        //         success: false,
-        //         message: 'Please fill all the fields'
-        //     })
-        // }
-
-        //fetching user details
-        const userDetails = await User.findById(id);
-
-        //fetching profile Id
-        const profileId = userDetails.additionDetails;
-
-        //updating profile details
-        const updatedProfile = await Profile.findByIdAndUpdate(profileId,   {dateOfBirth, about, gender, contactNumber},   {new:true} );
-
-        //return response
-        return res.status(200).json({
-            success: true,
-            message: 'Profile updated successfully',
-            updatedProfile
-        })
+  try {
+    const {
+      firstname = "",
+      lastname = "",
+      dateOfBirth = "",
+      about = "",
+      contactNumber = "",
+      gender = "",
+    } = req.body
 
 
+    const profile = await Profile.create( {
+      dateOfBirth,
+      about,
+      contactNumber,
+      gender,
+    })
 
-    }catch(error){
-        return res.status(500).json({
-            success: false,
-            message:'somthig went wrong while updating profile'
-        })
-    }
+    console.log("profile updated", profile)
+
+
+    const id = req.user.id
+
+ 
+
+    const user = await User.findByIdAndUpdate(id, {
+      firstname,
+      lastname,
+      additionDetails:profile._id,
+    })
+ 
+     
+
+    // Find the updated user details
+    const updatedUserDetails = await User.findById(id)
+ 
+    return res.json({
+      success: true,
+      message: "Profile updated successfully",
+      updatedUserDetails,
+    })
+  } catch (error) {
+    console.log(error)
+    return res.status(500).json({
+      success: false,
+      error: error.message,
+    })
+  }
 }
 
 
@@ -92,7 +101,7 @@ const deleteAccount = async (req, res) => {
 
 //.......................................get user details...............................................
 
-const getAllUserDetails = async (req, res) => { 
+const getUserDetails = async (req, res) => { 
     try{
         //fetch user Id
         const userId = req.user.id;
@@ -124,6 +133,36 @@ const getAllUserDetails = async (req, res) => {
     }
 }
 
+
+// ...................get all user who register in Hacktech................................
+
+const getAllUsers = async (req, res) => { 
+    try{
+        const users = await User.find().exec();
+
+        if(!users)
+        {
+            return res.status(404).json({
+                success:false,
+                message:'user not found',
+            })
+        }
+
+        console.log("all user details : ",users);
+        return res.status(200).json({
+            success: true,
+            message: 'Users fetched successfully',
+            users
+        })
+
+    }
+    catch(error){
+        return res.status(500).json({
+            success: false,
+            message:'somthig went wrong while getting user details'
+        })
+    }
+}
 
 
 
@@ -208,4 +247,35 @@ const getEnrolledCourses = async (req, res) => {
 };
 
  
-  module.exports = {updateProfile, deleteAccount, getAllUserDetails, updateDisplayPicture, getEnrolledCourses}
+
+const instructorDashboard = async (req, res) => {
+  try {
+    const courseDetails = await Course.find({ instructor: req.user.id })
+
+    const courseData = courseDetails.map((course) => {
+      const totalStudentsEnrolled = course.studentsEnroled.length
+      const totalAmountGenerated = totalStudentsEnrolled * course.price
+
+      // Create a new object with the additional fields
+      const courseDataWithStats = {
+        _id: course._id,
+        courseName: course.courseName,
+        courseDescription: course.courseDescription,
+        // Include other course properties as needed
+        totalStudentsEnrolled,
+        totalAmountGenerated,
+      }
+
+      return courseDataWithStats
+    })
+
+    res.status(200).json({ courses: courseData })
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ message: "Server Error" })
+  }
+}
+
+
+
+  module.exports = {updateProfile,  deleteAccount, getUserDetails, getAllUsers,  instructorDashboard, updateDisplayPicture, getEnrolledCourses}

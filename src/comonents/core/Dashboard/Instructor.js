@@ -14,7 +14,7 @@ export default function Instructor() {
   const [courses, setCourses] = useState([])
 
   useEffect(() => {
-    ;(async () => {
+    (async () => {
       setLoading(true)
       const instructorApiData = await getInstructorData(token)
       const result = await fetchInstructorCourses(token)
@@ -27,32 +27,33 @@ export default function Instructor() {
     })()
   }, [])
 
-  const totalAmount = instructorData?.reduce(
-    (acc, curr) => acc + curr.totalAmountGenerated,
-    0
-  )
+  // const totalAmount = instructorData.reduce(
+  //   (acc, curr) => acc + curr.totalAmountGenerated,
+  //   0
+  // )
 
-  const totalStudents = instructorData?.reduce(
-    (acc, curr) => acc + curr.totalStudentsEnrolled,
-    0
-  )
+  // const totalStudents = instructorData.reduce(
+  //   (acc, curr) => acc + curr.totalStudentsEnrolled,
+  //   0
+  // )
 
   return (
     <div>
       <div className="space-y-2">
         <h1 className="text-2xl font-bold text-richblack-5">
-          Hi {user?.firstName} 👋
-        </h1>
+          Hi {user?.firstname} 👋 
+        </h1> 
         <p className="font-medium text-richblack-200">
           Let's start something new
         </p>
       </div>
-      {loading ? (
+
+      {/* {loading ? (
         <div className="spinner"></div>
       ) : courses.length > 0 ? (
         <div>
           <div className="my-4 flex h-[450px] space-x-4">
-            {/* Render chart / graph */}
+            {/* Render chart / graph 
             {totalAmount > 0 || totalStudents > 0 ? (
               <InstructorChart courses={instructorData} />
             ) : (
@@ -63,8 +64,9 @@ export default function Instructor() {
                 </p>
               </div>
             )}
+
             {/* Total Statistics */}
-            <div className="flex min-w-[250px] flex-col rounded-md bg-richblack-800 p-6">
+            {/* <div className="flex min-w-[250px] flex-col rounded-md bg-richblack-800 p-6">
               <p className="text-lg font-bold text-richblack-5">Statistics</p>
               <div className="mt-4 space-y-4">
                 <div>
@@ -86,8 +88,11 @@ export default function Instructor() {
                   </p>
                 </div>
               </div>
-            </div>
-          </div>
+               
+          </div> 
+          */}
+          
+
           <div className="rounded-md bg-richblack-800 p-6">
             {/* Render 3 courses */}
             <div className="flex items-center justify-between">
@@ -110,7 +115,7 @@ export default function Instructor() {
                     </p>
                     <div className="mt-1 flex items-center space-x-2">
                       <p className="text-xs font-medium text-richblack-300">
-                        {course.studentsEnroled.length} students
+                         students
                       </p>
                       <p className="text-xs font-medium text-richblack-300">
                         |
@@ -124,19 +129,7 @@ export default function Instructor() {
               ))}
             </div>
           </div>
-        </div>
-      ) : (
-        <div className="mt-20 rounded-md bg-richblack-800 p-6 py-20">
-          <p className="text-center text-2xl font-bold text-richblack-5">
-            You have not created any courses yet
-          </p>
-          <Link to="/dashboard/add-course">
-            <p className="mt-1 text-center text-lg font-semibold text-yellow-50">
-              Create a course
-            </p>
-          </Link>
-        </div>
-      )}
+      
     </div>
   )
 }

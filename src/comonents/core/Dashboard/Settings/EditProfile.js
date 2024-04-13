@@ -37,17 +37,17 @@ export default function EditProfile() {
           </h2>
           <div className="flex flex-col gap-5 lg:flex-row">
             <div className="flex flex-col gap-2 lg:w-[48%]">
-              <label htmlFor="firstName" className="lable-style">
+              <label htmlFor="firstname" className="lable-style text-white">
                 First Name
               </label>
               <input
                 type="text"
-                name="firstName"
-                id="firstName"
+                name="firstname"
+                id="firstname"
                 placeholder="Enter first name"
-                className="form-style"
-                {...register("firstName", { required: true })}
-                defaultValue={user?.firstName}
+                className="form-style p-2 rounded-md font-medium"
+                {...register("firstname", { required: true })}
+                defaultValue={user?.firstname}
               />
               {errors.firstName && (
                 <span className="-mt-1 text-[12px] text-yellow-100">
@@ -56,17 +56,17 @@ export default function EditProfile() {
               )}
             </div>
             <div className="flex flex-col gap-2 lg:w-[48%]">
-              <label htmlFor="lastName" className="lable-style">
+              <label htmlFor="lastname" className="lable-style text-white">
                 Last Name
               </label>
               <input
                 type="text"
-                name="lastName"
-                id="lastName"
+                name="lastname"
+                id="lastname"
                 placeholder="Enter first name"
-                className="form-style"
-                {...register("lastName", { required: true })}
-                defaultValue={user?.lastName}
+                className="form-style  p-2 rounded-md font-medium"
+                {...register("lastname", { required: true })}
+                defaultValue={user?.lastname}
               />
               {errors.lastName && (
                 <span className="-mt-1 text-[12px] text-yellow-100">
@@ -78,14 +78,14 @@ export default function EditProfile() {
 
           <div className="flex flex-col gap-5 lg:flex-row">
             <div className="flex flex-col gap-2 lg:w-[48%]">
-              <label htmlFor="dateOfBirth" className="lable-style">
+              <label htmlFor="dateOfBirth" className="lable-style text-white">
                 Date of Birth
               </label>
               <input
                 type="date"
                 name="dateOfBirth"
                 id="dateOfBirth"
-                className="form-style"
+                className="form-style  p-2 rounded-md font-medium"
                 {...register("dateOfBirth", {
                   required: {
                     value: true,
@@ -105,14 +105,14 @@ export default function EditProfile() {
               )}
             </div>
             <div className="flex flex-col gap-2 lg:w-[48%]">
-              <label htmlFor="gender" className="lable-style">
+              <label htmlFor="gender" className="lable-style text-white">
                 Gender
               </label>
               <select
                 type="text"
                 name="gender"
                 id="gender"
-                className="form-style"
+                className="form-style  p-3 rounded-md font-medium"
                 {...register("gender", { required: true })}
                 defaultValue={user?.additionalDetails?.gender}
               >
@@ -134,7 +134,7 @@ export default function EditProfile() {
 
           <div className="flex flex-col gap-5 lg:flex-row">
             <div className="flex flex-col gap-2 lg:w-[48%]">
-              <label htmlFor="contactNumber" className="lable-style">
+              <label htmlFor="contactNumber" className="lable-style text-white">
                 Contact Number
               </label>
               <input
@@ -142,7 +142,7 @@ export default function EditProfile() {
                 name="contactNumber"
                 id="contactNumber"
                 placeholder="Enter Contact Number"
-                className="form-style"
+                className="form-style  p-2 rounded-md font-medium"
                 {...register("contactNumber", {
                   required: {
                     value: true,
@@ -160,7 +160,7 @@ export default function EditProfile() {
               )}
             </div>
             <div className="flex flex-col gap-2 lg:w-[48%]">
-              <label htmlFor="about" className="lable-style">
+              <label htmlFor="about" className="lable-style text-white">
                 About
               </label>
               <input
@@ -168,7 +168,7 @@ export default function EditProfile() {
                 name="about"
                 id="about"
                 placeholder="Enter Bio Details"
-                className="form-style"
+                className="form-style  p-2 rounded-md font-medium"
                 {...register("about", { required: true })}
                 defaultValue={user?.additionalDetails?.about}
               />

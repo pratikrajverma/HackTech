@@ -15,7 +15,7 @@ const Peers = () => {
         </div>
 
         <div className='text-center'>
-         <Link to='signup'>
+         <Link to='allPeers'>
             <button className='py-2 text-pure-greys-50  font-bold w-40 my-[3.7rem] rounded-md active:scale-95  bg-blue-300 hover:scale-95 hover:bg-caribbeangreen-500'  >
                     Start
             </button>

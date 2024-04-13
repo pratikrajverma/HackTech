@@ -3,7 +3,7 @@ const router = express.Router();
 
 
 const { auth, isInstructor, isStudent, isAdmin  } = require('../middleware/auth');
-const { createCourse, getCourseDetails, showAllCourse } = require('../controllers/Course');
+const { createCourse,   deleteCourse,  getCourseDetails, showAllCourse, getInstructorCourses ,   getFullCourseDetails, editCourse} = require('../controllers/Course');
 const { createSection, updateSection, deleteSection } = require('../controllers/Section');
 const { updateSubsection, deleteSubsection, createSubsection } = require('../controllers/Subsection');
 const { createCategory, showAllCategories, categoryPageDetails } = require('../controllers/Category');
@@ -34,6 +34,19 @@ router.get('/showAllCourse', showAllCourse);
 
 router.post('/getCourseDetails', getCourseDetails)
 
+// Get all Registered Courses
+ 
+
+router.post("/getFullCourseDetails", auth, getFullCourseDetails)
+// Edit Course routes
+router.post("/editCourse", auth, isInstructor, editCourse)
+// Get all Courses Under a Specific Instructor
+router.get("/getInstructorCourses", auth, isInstructor, getInstructorCourses)
+// Delete a Course
+router.delete("/deleteCourse", deleteCourse)  
+
+// router.post("/updateCourseProgress", auth, isStudent, updateCourseProgress);
+
 
 
  
@@ -49,7 +62,7 @@ router.post("/createCategory", auth, isAdmin, createCategory )
 router.get("/showAllCategories",showAllCategories )
 
 //course is listing based on category name
-router.post("/getCategoryPageDetails", categoryPageDetails) 
+router.post("/getCategoryPageDetails", categoryPageDetails)  
 
 
 
