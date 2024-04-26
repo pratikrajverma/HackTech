@@ -27,6 +27,8 @@ router.post('/sendotp',sendOTP);
 //roter for change password
 router.post('/changepassword',auth, changePassword);
 
+
+
  
 
 

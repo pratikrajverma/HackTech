@@ -3,7 +3,7 @@ const User = require('../models/User');
 const Profile = require('../models/Profile')
 const otpGenerator = require('otp-generator');
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken'); 
 require('dotenv').config();
 const mailSender = require('../utils/mailSender');
 const { passwordUpdated } = require("../mail/templates/passwordUpdate");
@@ -157,7 +157,7 @@ const signUp = async (req, res) => {
             //profile entry
             const profileDetails = await Profile.create({
                 gender: "",
-                dateOfBirth: "",
+                dateOfBirth: "", 
                 about: "",
                 contactNumber: ""
               })
@@ -228,8 +228,8 @@ const login = async(req,res) => {
             })
         }
 
-
-      
+ 
+       
 
         //compare password and create jwt token
         if(await bcrypt.compare(password, user.password))
@@ -251,8 +251,8 @@ const login = async(req,res) => {
                const options={
                 expires: new Date(Date.now() + 3*24*60*60*1000),      //this is time  for 3 days
                 httpOnly: true, 
-               }
-
+               } 
+ 
 
             //create cookies
             res.cookie('token', token, options).status(200).json({                  //yaha par 1st argument me token ka nam he  and 2nd argument me token ki value he and 3rd argument me coookie ki validation he 

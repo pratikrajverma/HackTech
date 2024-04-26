@@ -5,7 +5,11 @@ import { apiConnector } from "../apiconnector"
 import { profileEndpoints } from "../apis"
 import { logout } from "./authAPI"
 
-const { GET_USER_DETAILS_API, GET_USER_ENROLLED_COURSES_API, GET_INSTRUCTOR_DATA_API, GET_ALL_USERS_API } = profileEndpoints
+const { GET_USER_DETAILS_API, 
+        GET_USER_ENROLLED_COURSES_API, 
+        GET_INSTRUCTOR_DATA_API, 
+        GET_ALL_USERS_API, 
+        SUBSCRIBING_USER_API} = profileEndpoints
 
 export function getUserDetails(token, navigate) {
   return async (dispatch) => {
@@ -105,4 +109,19 @@ export async function getInstructorData(token) {
   }
   toast.dismiss(toastId);
   return result;
+}
+
+
+export async function userSubscribing(token, userid){
+  try{
+      const response = await apiConnector("POST", SUBSCRIBING_USER_API, userid,
+      {
+        Authorization: `Bearer ${token}`,
+      }) 
+  
+      console.log('subscribing response', response);
+  }
+  catch(error){
+    console.log("SUBSCRIBING_USER_API", error);
+  }
 }

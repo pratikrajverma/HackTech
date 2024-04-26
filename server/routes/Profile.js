@@ -7,6 +7,8 @@ const {updateProfile, deleteAccount, getUserDetails, updateDisplayPicture, getEn
 
 const {isInstructor} = require('../middleware/auth')
 
+const { subscriber} = require('../controllers/Subscriber')
+
 
 
 
@@ -39,7 +41,11 @@ router.get("/instructorDashboard", auth, isInstructor, instructorDashboard)
 
 router.get("/getAllUsers",getAllUsers)
 
-module.exports = router; 
+//......................subscribing............................
+
+router.post("/subscribe", auth, subscriber);
+
+module.exports = router;  
 
 
 

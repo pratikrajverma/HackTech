@@ -82,7 +82,7 @@ const Home = () => {
 
             
             {/*code blocks 1  */}
-            <div>
+            {/* <div>
                 <CodeBlocks 
                     position={'flex-row'}   
                     heading={
@@ -120,7 +120,7 @@ const Home = () => {
                         }
                     }
                 ></CodeBlocks>
-            </div>
+            </div> */}
 
 
             {/*code blocks  2  */}

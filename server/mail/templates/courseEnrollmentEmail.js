@@ -74,10 +74,10 @@ exports.courseEnrollmentEmail = (courseName, name) => {
 				padding: 10px 25px 10px 25px; 
 				background-color: #000000;
 				border-radius: 10px;
-			} 
+			}  
         </style>
     
-    </head>
+    </head> 
     
     <body>
         <div class="container">

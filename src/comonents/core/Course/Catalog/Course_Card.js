@@ -1,36 +1,38 @@
 
 
-
+import CTAButton from '../../Homepage/Button'
 
 const Course_Card = (course) => {
   console.log("course ka data in course_card", course)
 
-  
+
   const startVideo = (link) => {
     try {
       console.log('video start', link)
-        window.open(link );
+      window.open(link);
     } catch (error) {
-        console.error('Error opening video:', error);
+      console.error('Error opening video:', error);
     }
-}
+  }
 
-  
+
 
 
   return (
     <div className=''>
-    
 
 
-      <div className=' flex justify-between items-center w-[1200px] border-[4px] rounded-md border-richblack-300 ml-6  pr-5'>
 
+      <div className=' flex justify-between items-center w-[1200px] border-[4px] rounded-md border-richblack-300 ml-6   '>
+
+      {/* this is for profile image */}
         <div className='bg-cover   bg-center h-[13rem] w-[15rem]  border-2
-                         border-pure-greys-200'  style={{ backgroundImage: `url(${course.thumbnail}) `  }} > </div>
+                         border-pure-greys-200'  style={{ backgroundImage: `url(${course.thumbnail}) ` }} > 
+        </div>
 
 
 
-        <div className='flex flex-col   h-[12rem]  w-[25%] text-white gap-2' >
+        <div className='flex flex-col   h-[12rem]  w-[30%] text-white gap-2 pb-5' >
           <h1 className='text-pure-greys-5 pt-2 text-2xl font-bold '>{`${course.instructor.firstname}  ${course.instructor.lastname}`}</h1>
 
           <p className="text-yellow-300">{course.instructor.additionDetails.about}</p>
@@ -39,7 +41,20 @@ const Course_Card = (course) => {
 
           <p className="text-yellow-300">Email : {course.instructor.email}</p>
 
-          <div className='bg-blue-300 blur-lg h-3'></div>
+
+          <div className="  relative bottom-2 ">
+            <div className='bg-blue-300   blur-lg h-3'></div>
+
+            <div className='flex gap-10  '>
+            <CTAButton active={"bg-yellow-100"} linkto={"login"}>View Profile</CTAButton>
+            
+            <button className='text-white  bg-caribbeangreen-400 py-2 px-5  first-letter: 
+                       rounded-md active:scale-95 hover:bg-caribbeangreen-100 top-1 '
+              onClick={() => startVideo(course.courseContent[0].Subsection[0].videoUrl)}
+
+            >Start learning</button>
+            </div>
+          </div>
 
         </div>
 
@@ -47,7 +62,7 @@ const Course_Card = (course) => {
           <p className='font-semibold text-xl text-blue-100'> {course.courseName}</p>
 
           <p><span className='text-blue-25'>courseDescription : </span> {course.courseDescription}</p>
-         
+
           <p><span className='text-blue-25'>What You will learn: </span> {course.whatYouWillLearn}</p>
 
           <p className='font-semibold'><span className='text-blue-25'>Price : </span><span className='text-caribbeangreen-100'>₹ {course.price}</span></p>
@@ -56,11 +71,7 @@ const Course_Card = (course) => {
 
 
 
-        <button className='text-white bg-caribbeangreen-400 py-2 px-5 my-[3.7rem]  
-                       rounded-md active:scale-95 hover:bg-caribbeangreen-100 '
-                       onClick={() => startVideo(course.courseContent[0].Subsection[0].videoUrl)}
 
-                       >Start learning</button>
       </div>
 
 
@@ -70,4 +81,4 @@ const Course_Card = (course) => {
 
 export default Course_Card
 
- 
+
