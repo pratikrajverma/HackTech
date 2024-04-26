@@ -61,7 +61,7 @@ app.use('/api/v1/reach', contactUsRoute);
 app.use('/',(req,res)=>{ 
     return res.json({
         success:true,
-        message:'welcome to Backend Server........ '
+        message:'welcome to Backend Server of hacktech '
     })
 })
 
