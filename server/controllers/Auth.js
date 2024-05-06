@@ -5,8 +5,8 @@ const otpGenerator = require('otp-generator');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken'); 
 require('dotenv').config();
-const mailSender = require('../utils/mailSender');
-const { passwordUpdated } = require("../mail/templates/passwordUpdate");
+const mailSender = require('../utils/mailSender'); 
+const { passwordUpdated } = require("../mail/templates/passwordUpdate");   
 
 //.................................OTP creation and storing OTP to mongodb and in mongodb this OTP will  send by email to user.....................
 
@@ -251,7 +251,7 @@ const login = async(req,res) => {
                const options={
                 expires: new Date(Date.now() + 3*24*60*60*1000),      //this is time  for 3 days
                 httpOnly: true, 
-               } 
+               }  
  
 
             //create cookies

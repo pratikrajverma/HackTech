@@ -20,7 +20,7 @@ const PORT = process.env.PORT || 4000;
 //database connection
 database.connectDB();
 
-//cloudinary connection
+//cloudinary connection 
 cloudinaryConnect() 
  
     
@@ -29,7 +29,8 @@ cloudinaryConnect()
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-            origin: 'http://localhost:3000',
+            // origin: 'http://localhost:3000',
+            origin: '*',
             credentials:true,
         }));
 app.use(fileupload({
@@ -54,9 +55,9 @@ app.use('/api/v1/auth', userRoutes);
 app.use('/api/v1/profile', profileRoutes);
 app.use('/api/v1/payment', paymentRoutes);
 app.use('/api/v1/course', courseRoutes);
-app.use('/api/v1/reach', contactUsRoute); 
+app.use('/api/v1/reach', contactUsRoute);      
 
-
+    
 //default route
 app.use('/',(req,res)=>{ 
     return res.json({
