@@ -19,11 +19,11 @@ const Course_Card = (course) => {
 
 
   return (
-    <div className=''>
+    <div  >
 
 
 
-      <div className=' flex justify-between items-center w-[1200px] border-[4px] rounded-md border-richblack-300 ml-6   '>
+      <div className='  flex justify-between items-center w-[1200px] border-[4px] rounded-md border-richblack-300 ml-6   '>
 
       {/* this is for profile image */}
         <div className='bg-cover   bg-center h-[13rem] w-[15rem]  border-2
@@ -52,7 +52,7 @@ const Course_Card = (course) => {
                        rounded-md active:scale-95 hover:bg-caribbeangreen-100 top-1 '
               onClick={() => startVideo(course.courseContent[0].Subsection[0].videoUrl)}
 
-            >Start learning</button>
+            >Start Video</button>
             </div>
           </div>
 
@@ -61,11 +61,11 @@ const Course_Card = (course) => {
         <div className='w-[40%] overflow-auto  text-white flex flex-col gap-2 bg-richblue-800 p-5 rounded-md'>
           <p className='font-semibold text-xl text-blue-100'> {course.courseName}</p>
 
-          <p><span className='text-blue-25'>courseDescription : </span> {course.courseDescription}</p>
+          <p><span className='text-blue-25'>Video Description : </span> {course.courseDescription}</p>
 
-          <p><span className='text-blue-25'>What You will learn: </span> {course.whatYouWillLearn}</p>
+          {/* <p><span className='text-blue-25'>What You will learn: </span> {course.whatYouWillLearn}</p> */}
 
-          <p className='font-semibold'><span className='text-blue-25'>Price : </span><span className='text-caribbeangreen-100'>₹ {course.price}</span></p>
+          <p className='font-semibold'><span className='text-blue-25'>Address : </span><span className='text-caribbeangreen-100'> </span></p>
 
         </div>
 
@@ -74,6 +74,11 @@ const Course_Card = (course) => {
 
       </div>
 
+
+
+      <div className=''>
+
+      </div>
 
     </div>
   )

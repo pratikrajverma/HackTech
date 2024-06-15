@@ -13,7 +13,7 @@ function OldLandingPage() {
 
 
 
-        <div className="flex justify-center items-center gap-10 h-[100vh]">
+        <div className="flex   lg:flex-row flex-col lg:justify-center lg:items-center gap-20 lg:gap-10 lg:h-[100vh]">
 
             <Course></Course>
 

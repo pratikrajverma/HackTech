@@ -7,7 +7,7 @@ const About = ( ) => {
 
   return (
     <div className= 'bg-black text-white'>
-        <h1 className='text-sky-500 font-semibold text-3xl py-5 flex justify-center h-full'>Welcome to  HackTech</h1>
+        <h1 className='text-sky-500 font-semibold text-3xl py-5 flex justify-center lg:h-full'>Welcome to  HackTech</h1>
         
             <div className="about-page px-5">
                  

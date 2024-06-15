@@ -68,9 +68,9 @@ function ContactUs() {
 
 
     return (
-        <div className={` ${lightbtn ? 'bg-richblack-300' : 'bg-black text-white'}   pl-5`} >
+        <div className={` ${lightbtn ? 'bg-caribbeangreen-25' : 'bg-black text-white'}   pl-5`} >
 
-            <div className=' flex justify-end items-center gap-52 pr-40'>
+            <div className=' flex lg:justify-end pr-5 items-center lg:gap-52   lg:pr-40'>
                 <h1 className='text-sky-500 font-semibold text-3xl py-5  flex justify-center h-full'>Feel free to Contact ...</h1>
                 <div className=' bg-blue-300 bg-violet-400 w-[3rem] rounded-full p-[4px] ml-10 gap-2 flex justify-between'>
 
@@ -89,10 +89,10 @@ function ContactUs() {
 
             <form onSubmit={handleSubmit(submitContactForm)} >
 
-                <div className='grid grid-cols-2 gap-5 pl-10'>
+                <div className='grid grid-cols-2 gap-5 pl-10 '>
                     <div  >
 
-                        <input className='w-[90%] h-[3rem] px-5 rounded-md text-black  border-b-[4px]   border-yellow-200'
+                        <input className='w-[90%] h-[3rem] px-5 rounded-md text-black  border-b-[4px]   border-caribbeangreen-400 '
                             placeholder='firstname' type="text" id="firstname" name="firstname"
                             {...register('firstname', { required: true })} />
 
@@ -104,14 +104,14 @@ function ContactUs() {
 
                     <div  >
 
-                        <input className='w-[90%] h-[3rem] px-5 rounded-md text-black  border-b-[4px]   border-yellow-200'
+                        <input className='w-[90%] h-[3rem] px-5 rounded-md text-black  border-b-[4px]   border-caribbeangreen-400 '
                             placeholder='lastname' type="text" id="lastname" name="lastname"
                             {...register('lastname')} />
                     </div>
 
                     <div  >
 
-                        <input className=' w-[90%] h-[3rem] px-5 rounded-md text-black   border-b-[4px]  border-yellow-200  '
+                        <input className=' w-[90%] h-[3rem] px-5 rounded-md text-black   border-b-[4px]  border-caribbeangreen-400 '
                             placeholder='Enter your Email' type="email" id="email" name="email"
                             {...register('email', { required: true })} />
 
@@ -122,7 +122,7 @@ function ContactUs() {
 
                     <div >
 
-                        <input className=' w-[90%] h-[3rem] px-5 rounded-md text-black   border-b-[4px]  border-yellow-200'
+                        <input className=' w-[90%] h-[3rem] px-5 rounded-md text-black   border-b-[4px]  border-caribbeangreen-400 '
                             placeholder='Phone Number' type="tel" id="phoneNo" name="phoneNo" pattern="[0-9]{10}"
                             {...register('phoneNo', { required: true })} />
 
@@ -135,9 +135,9 @@ function ContactUs() {
 
 
 
-                <div className="form-group px-10">
+                <div className="form-group  lg:px-10 pl-10 pr-[12px]  ">
 
-                    <textarea className='w-[98%] pt-5 mt-6 px-5  rounded-md   text-black  border-b-[4px] border-purple-600  border-yellow-200'
+                    <textarea className='w-[98%]  pt-5 mt-6 px-5  rounded-md   text-black  border-b-[4px] border-purple-600  border-caribbeangreen-400 '
                         placeholder='Message' id="message" name="message"
                         {...register('message', { required: true })} />
 
@@ -151,10 +151,10 @@ function ContactUs() {
 
 
 
-                <div className='flex justify-end my-7 pr-16'>
+                <div className='flex justify-end my-7 lg:pr-16 pr-5'>
 
                     <button type='submit'
-                        className='rounded-md bg-yellow-50 text-center px-6 py-2 text-[16px] font-semibold text-black hover:scale-95 transition-all duration-200'>
+                        className='rounded-md bg-caribbeangreen-400 text-center px-6 py-2 text-[16px] font-semibold text-white hover:scale-95 transition-all duration-200'>
                         Send Message
                     </button>
                 </div>
@@ -163,10 +163,10 @@ function ContactUs() {
 
             </form> 
 
-            <div className='bg-black text-white mt-20 p-5 -ml-5'>
+            <div className='bg-black text-white mt-20 p-5  -ml-5'>
                 <table>
                     <tr>
-                        <td className='pr-40'>Founder : </td>
+                        <td className='lg:pr-40 pr-20'>Founder : </td>
                         <td><h1>Pratik Raj Verma</h1></td>
                     </tr>
 

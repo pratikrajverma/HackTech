@@ -19,10 +19,10 @@ const PORT = process.env.PORT || 4000;
 
 //database connection
 database.connectDB();
-
+ 
 //cloudinary connection 
 cloudinaryConnect() 
- 
+  
     
 //middleware   
 

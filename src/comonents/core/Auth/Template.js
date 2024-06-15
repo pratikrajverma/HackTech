@@ -26,7 +26,7 @@ function Template({ title, description1, description2, image, formType }) {
             </p>
             {formType === "signup" ? <SignupForm /> : <LoginForm />}
           </div>
-          <div className="relative    w-11/12 max-w-[450px] md:mx-0">
+          <div className="relative    lg:w-11/12 max-w-[450px] md:mx-0"> 
             <img
               src={frameImg}
               alt="Pattern"
@@ -45,7 +45,7 @@ function Template({ title, description1, description2, image, formType }) {
 
               /> */}
 
-            <div className='bg-cover h-[400px] w-[450px]  absolute -top-2 right-4 ' style={{ backgroundImage: `url(${image})` }}></div>
+            <div className='bg-cover  lg:h-[400px] h-[100%]  lg:w-[450px] w-[100%]  absolute -top-2 lg:right-4 ' style={{ backgroundImage: `url(${image})` }}></div>
 
           </div>
         </div>
