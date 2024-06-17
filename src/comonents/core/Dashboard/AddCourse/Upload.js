@@ -76,7 +76,7 @@ export default function Upload({
                 className="h-full w-full rounded-md object-cover"
               />
             ) : (
-              <Player aspectRatio="16:9" playsInline src={previewSource} />
+              <Player aspectratio="16:9" playsInline src={previewSource} />
             )}
             {!viewData && (
               <button

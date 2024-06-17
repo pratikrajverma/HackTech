@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 
 import { fetchInstructorCourses } from "../../../services/operations/courseDetailsAPI"
 import { getInstructorData } from "../../../services/operations/profileAPI"
-import InstructorChart from "./InstructorDashboard/InstructorChart"
+ 
 
 export default function Instructor() {
   const { token } = useSelector((state) => state.auth)
@@ -101,6 +101,7 @@ export default function Instructor() {
                 <p className="text-xs font-semibold text-yellow-50">View All</p>
               </Link>
             </div>
+            
             <div className="my-4 flex items-start space-x-6">
               {courses.slice(0, 3).map((course) => (
                 <div key={course._id} className="w-1/3">
@@ -120,9 +121,7 @@ export default function Instructor() {
                       <p className="text-xs font-medium text-richblack-300">
                         |
                       </p>
-                      <p className="text-xs font-medium text-richblack-300">
-                        Rs. {course.price}
-                      </p>
+                     
                     </div>
                   </div>
                 </div>

@@ -6,18 +6,17 @@ import Navbar from "./comonents/common/Navbar"
 import OpenRoute from "./comonents/core/Auth/OpenRoute"
 import PrivateRoute from "./comonents/core/Auth/PrivateRoute"
 import AddCourse from "./comonents/core/Dashboard/AddCourse"
-import Cart from "./comonents/core/Dashboard/Cart"
-import EditCourse from "./comonents/core/Dashboard/EditCourse"
-import EnrolledCourses from "./comonents/core/Dashboard/EnrolledCourses"
+ 
+ 
 import Instructor from "./comonents/core/Dashboard/Instructor"
-import MyCourses from "./comonents/core/Dashboard/MyCourses" 
+ 
 import MyProfile from "./comonents/core/Dashboard/MyProfile"
 import Settings from "./comonents/core/Dashboard/Settings"
-import VideoDetails from "./comonents/core/ViewCourse/VideoDetails"
+ 
 import About from "./pages/About"
 import Catalog from "./pages/Catalog"
 import Contact from "./pages/ContactUs"
-import CourseDetails from "./pages/CourseDetails"
+ 
 import Dashboard from "./pages/Dashboard"
 import Error from "./pages/Error"
 import ForgotPassword from "./pages/ForgotPassword"
@@ -26,7 +25,7 @@ import Login from "./pages/Login"
 import Signup from "./pages/Signup"
 import UpdatePassword from "./pages/UpdatePassword"
 import VerifyEmail from "./pages/VarifyEmail"
-import ViewCourse from "./pages/ViewCourse"
+ 
 import { getUserDetails } from "./services/operations/profileAPI"
 import { ACCOUNT_TYPE } from "./utils/constants"
 import AllPeers from './comonents/core/peers/AllPeers'
@@ -45,14 +44,14 @@ function App() {
   }, [])
 
   return (
-    <div className="flex min-h-screen w-screen bg-black flex-col font-inter">
+    <div className="flex   w-screen bg-black flex-col font-inter">
       <Navbar />
 
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="courses/:courseId" element={<CourseDetails />} />
+      
         <Route path="catalog/:catalogName" element={<Catalog />} />
         {/* Open Route - for Only Non Logged in User */}
         <Route
@@ -118,45 +117,17 @@ function App() {
           {user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
             <>
               <Route path="dashboard/instructor" element={<Instructor />} />
-              <Route path="dashboard/my-courses" element={<MyCourses />} /> 
+          
               <Route path="dashboard/add-course" element={<AddCourse />} /> 
-              <Route
-                path="dashboard/edit-course/:courseId"
-                element={<EditCourse />}
-              />
+       
             </>
           )}
           {/* Route only for Students */}
-          {user?.accountType === ACCOUNT_TYPE.STUDENT && (
-            <>
-              <Route
-                path="dashboard/enrolled-courses"
-                element={<EnrolledCourses />}
-              />
-              <Route path="/dashboard/cart" element={<Cart />} />
-            </>
-          )}
+        
           <Route path="dashboard/settings" element={<Settings />} />
         </Route>
 
-        {/* For the watching course lectures */}
-        <Route
-          element={
-            <PrivateRoute>
-              <ViewCourse />
-            </PrivateRoute>
-          }
-        >
-          {user?.accountType === ACCOUNT_TYPE.STUDENT && (
-            <>
-              <Route
-                path="view-course/:courseId/section/:sectionId/sub-section/:subSectionId"
-                element={<VideoDetails />}
-              />
-            </>
-          )}
-        </Route>
-
+     
         {/* 404 Page */}
         <Route path="*" element={<Error />} />
       </Routes>

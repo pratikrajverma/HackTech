@@ -18,7 +18,7 @@ import ProfileDropdown from "../core/Auth/ProfileDropDown"
 function Navbar() {
     const { token } = useSelector((state) => state.auth)
     const { user } = useSelector((state) => state.profile)
-    const { totalItems } = useSelector((state) => state.cart)
+ 
     const location = useLocation()
 
     const [subLinks, setSubLinks] = useState([])
@@ -33,7 +33,7 @@ function Navbar() {
             setLoading(true)
             try {
                 const res = await apiConnector("GET", categories.CATEGORIES_API)
-                console.log('categories response', res)
+                 
                 setSubLinks(res.data.data)
             } catch (error) {
                 console.log("Could not fetch Categories.", error)
@@ -42,7 +42,7 @@ function Navbar() {
         })()
     }, [])
 
-    console.log("sub links :", subLinks)
+    
 
     const matchRoute = (route) => {
         return matchPath({ path: route }, location.pathname)
@@ -132,11 +132,7 @@ function Navbar() {
                         {user && user?.accountType !== ACCOUNT_TYPE.INSTRUCTOR && (
                             <Link to="/dashboard/cart" className="relative">
                                 <AiOutlineShoppingCart className="text-2xl text-richblack-100" />
-                                {totalItems > 0 && (
-                                    <span className="absolute -bottom-2 -right-2 grid h-5 w-5 place-items-center overflow-hidden rounded-full bg-richblack-600 text-center text-xs font-bold text-yellow-100">
-                                        {totalItems}
-                                    </span>
-                                )}
+                           
                             </Link>
                         )}
 
@@ -238,11 +234,7 @@ function Navbar() {
                             {user && user?.accountType !== ACCOUNT_TYPE.INSTRUCTOR && (
                                 <Link to="/dashboard/cart" className="relative">
                                     <AiOutlineShoppingCart className="text-2xl text-richblack-100" />
-                                    {totalItems > 0 && (
-                                        <span className="absolute -bottom-2 -right-2 grid h-5 w-5 place-items-center overflow-hidden rounded-full bg-richblack-600 text-center text-xs font-bold text-yellow-100">
-                                            {totalItems}
-                                        </span>
-                                    )}
+                                  
                                 </Link>
                             )}
 

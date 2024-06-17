@@ -53,12 +53,12 @@ export default function MyProfile() {
         </div>
         <p
           className={`${
-            user.additionDetails.about
+            user?.additionDetails.about
               ? "text-richblack-5"
               : "text-richblack-400"
           } text-sm font-medium`}
         >
-          {user.additionDetails.about ?? "Write Something About Yourself"}
+          {user?.additionDetails.about ?? "Write Something About Yourself"}
         </p>
       </div>
       <div className="my-10 flex flex-col gap-y-10 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-8 px-12">
@@ -80,39 +80,25 @@ export default function MyProfile() {
             <div>
               <p className="mb-2 p-2 text-sm text-richblack-100">First Name</p> 
               <p className="text-sm font-medium text-richblack-5">
-                {user.firstname}
+                {user?.firstname}
               </p>
             </div>
             <div>
               <p className="mb-2 text-sm text-richblack-400">Email</p>
               <p className="text-sm font-medium text-richblack-5">
-                {user.email}
+                {user?.email}
               </p>
             </div>
             <div>
               <p className="mb-2 text-sm text-richblack-400">Gender</p>
               <p className="text-sm font-medium text-richblack-5">
-                {user.additionDetails.gender ?? "Add Gender"}
-              </p>
-            </div>
-          </div>
-          <div className="flex flex-col gap-y-5">
-            <div>
-              <p className="mb-2 text-sm text-richblack-400">Last Name</p>
-              <p className="text-sm font-medium text-richblack-5">
-                {user.lastname}
-              </p>
-            </div>
-            <div>
-              <p className="mb-2 text-sm text-richblack-400">Phone Number</p>
-              <p className="text-sm font-medium text-richblack-5">
-                {user.additionDetails.contactNumber ?? "Add Contact Number"}
+                {user?.additionDetails.contactNumber ?? "Add Contact Number"}
               </p>
             </div>
             <div>
               <p className="mb-2 text-sm text-richblack-400">Date Of Birth</p>
               <p className="text-sm font-medium text-richblack-5">
-                {formattedDate(user.additionDetails.dateOfBirth) ??
+                {formattedDate(user?.additionDetails.dateOfBirth) &&
                   "Add Date Of Birth"}
               </p>
             </div>

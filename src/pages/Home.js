@@ -1,14 +1,12 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import { FaArrowRight } from "react-icons/fa6";
+ 
 import { HighlightText } from '../comonents/core/Homepage/HighlightText';
 import CTAbutton from '../comonents/core/Homepage/Button';
 
-import instructorTeaching from '../assets/Images/Instructor_teaching.mp4';
+ 
 import CodeBlocks from '../comonents/core/Homepage/CodeBlocks';
 
-import TimeLineSection from '../comonents/core/Homepage/TimeLineSection';
-import InstructorSection from '../comonents/core/Homepage/InstructorSection';
+ 
 // import ExploreMore from '../comonents/core/Homepage/ExploreMore'
 import Footer from '../comonents/common/Footer';
 import OldLandingPage from '../comonents/core/Homepage/OldLandingPage'

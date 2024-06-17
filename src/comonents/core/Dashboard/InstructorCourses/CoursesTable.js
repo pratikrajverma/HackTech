@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import { Table, Tbody, Td, Th, Thead, Tr } from "react-super-responsive-table"
 
-import { setCourse, setEditCourse } from "../../../../slices/courseSlice"
+import { setCourse  } from "../../../../slices/courseSlice"
 import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css"
 import { useState } from "react"
 import { FaCheck } from "react-icons/fa"
@@ -11,10 +11,7 @@ import { RiDeleteBin6Line } from "react-icons/ri"
 import { useNavigate } from "react-router-dom"
 
 import { formatDate } from "../../../../services/formatDate"
-import {
-  deleteCourse,
-  fetchInstructorCourses,
-} from "../../../../services/operations/courseDetailsAPI"
+import {fetchInstructorCourses} from "../../../../services/operations/courseDetailsAPI"
 import { COURSE_STATUS } from "../../../../utils/constants"
 import ConfirmationModal from "../../../common/ConfirmationModal"
 
@@ -26,16 +23,7 @@ export default function CoursesTable({ courses, setCourses }) {
   const [confirmationModal, setConfirmationModal] = useState(null)
   const TRUNCATE_LENGTH = 30
 
-  const handleCourseDelete = async (courseId) => {
-    setLoading(true)
-    await deleteCourse({ courseId: courseId }, token)
-    const result = await fetchInstructorCourses(token)
-    if (result) {
-      setCourses(result)
-    }
-    setConfirmationModal(null)
-    setLoading(false)
-  }
+  
 
   console.log("All Course ", courses)
 
@@ -47,12 +35,8 @@ export default function CoursesTable({ courses, setCourses }) {
             <Th className="flex-1 text-left text-sm font-medium uppercase text-richblack-100">
               Courses
             </Th>
-            <Th className="text-left text-sm font-medium uppercase text-richblack-100">
-              Duration
-            </Th>
-            <Th className="text-left text-sm font-medium uppercase text-richblack-100">
-              Price
-            </Th>
+ 
+           
             <Th className="text-left text-sm font-medium uppercase text-richblack-100">
               Actions
             </Th>
@@ -110,12 +94,8 @@ export default function CoursesTable({ courses, setCourses }) {
                     )}
                   </div>
                 </Td>
-                <Td className="text-sm font-medium text-richblack-100">
-                  2hr 30min
-                </Td>
-                <Td className="text-sm font-medium text-richblack-100">
-                  ₹{course.price}
-                </Td>
+               
+             
                 <Td className="text-sm font-medium text-richblack-100 ">
                   <button
                     disabled={loading}
@@ -127,7 +107,7 @@ export default function CoursesTable({ courses, setCourses }) {
                   >
                     <FiEdit2 size={20} />
                   </button>
-                  <button
+                  {/* <button
                     disabled={loading}
                     onClick={() => {
                       setConfirmationModal({
@@ -148,7 +128,7 @@ export default function CoursesTable({ courses, setCourses }) {
                     className="px-1 transition-all duration-200 hover:scale-110 hover:text-[#ff0000]"
                   >
                     <RiDeleteBin6Line size={20} />
-                  </button>
+                  </button> */}
                 </Td>
               </Tr>
             ))

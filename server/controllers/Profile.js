@@ -30,7 +30,7 @@ const updateProfile = async (req, res) => {
     const id = req.user.id
 
  
-
+ 
     const user = await User.findByIdAndUpdate(id, {
       firstname,
       lastname,

@@ -2,14 +2,15 @@ const express = require('express');
 const app = express();
 
 
-
+ 
 //importing
 const{cloudinaryConnect} = require('./config/cloudinary');
 const database = require('./config/database');
 const fileupload = require('express-fileupload');
 const cors = require('cors');
 const cookieParser =  require('cookie-parser');
-require('dotenv').config(); 
+require('dotenv').config();  
+const morgan = require('morgan');
 
     
   
@@ -26,6 +27,7 @@ cloudinaryConnect()
     
 //middleware   
 
+
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
@@ -38,6 +40,8 @@ app.use(fileupload({
             tempFileDir: '/tmp',
         }));    
    
+        // Use morgan for logging
+app.use(morgan('dev'));
   
  
   
@@ -45,7 +49,7 @@ app.use(fileupload({
      
 const userRoutes = require('./routes/User');    
 const profileRoutes = require('./routes/Profile');    
-const paymentRoutes = require('./routes/Payment');    
+ 
 const courseRoutes = require('./routes/Course');  
 const contactUsRoute = require("./routes/contactRoutes");  
 
@@ -53,7 +57,7 @@ const contactUsRoute = require("./routes/contactRoutes");
 //routes handling
 app.use('/api/v1/auth', userRoutes);
 app.use('/api/v1/profile', profileRoutes);
-app.use('/api/v1/payment', paymentRoutes);
+ 
 app.use('/api/v1/course', courseRoutes);
 app.use('/api/v1/reach', contactUsRoute);      
 
