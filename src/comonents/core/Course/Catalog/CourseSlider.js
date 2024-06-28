@@ -62,14 +62,14 @@ const CourseSlider = ({ Courses }) => {
       {/* search bar */}
       <div className=' flex justify-center w-screen mb-40 pr-5 mt-10    items-center lg:gap-3'>
 
-        <div className='flex justify-end'><img src={locatemeLogo} className={`  h-16 cursor-pointer active:scale-95 ${animate ? 'animate-ping' : 'animate-none'} `}></img> </div>
+        <div className='flex justify-end'><img src={locatemeLogo} className={`  h-16 aspect-square   cursor-pointer active:scale-95 ${animate ? 'animate-ping' : 'animate-none'} `}></img> </div>
 
-        <input className='h-12 lg:w-80 rounded-lg bg-richblack-700 placeholder:text-xl  m-5 p-4 text-white font-semibold  '
+        <input className='h-12 lg:w-80 w-44 rounded-lg bg-richblack-700 placeholder:text-xl  m-5 p-4 text-white font-semibold  '
           placeholder='Enter your pin code...' type='text'
           onChange={enterPincode}
         />
 
-        <IoSearch className='text-white text-3xl cursor-pointer
+        <IoSearch className='text-white mr-2 text-3xl cursor-pointer
          hover:text-caribbeangreen-300 active:scale-90  '
           onClick={() => pincodeHandler(Courses)} />
 

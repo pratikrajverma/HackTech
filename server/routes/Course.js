@@ -34,6 +34,9 @@ router.get("/getInstructorCourses", auth, isInstructor, getInstructorCourses)
  
 
  
+//course is listing based on category name
+router.post("/getCategoryPageDetails", categoryPageDetails)  
+
 
 
 
@@ -49,8 +52,6 @@ router.post("/createCategory", auth, isAdmin, createCategory )
 //student can see all categories 
 router.get("/showAllCategories",showAllCategories )
 
-//course is listing based on category name
-router.post("/getCategoryPageDetails", categoryPageDetails)  
 
 
 

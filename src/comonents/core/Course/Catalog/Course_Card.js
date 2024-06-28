@@ -9,7 +9,7 @@ const Course_Card = (course) => {
   const startVideo = (link) => {
     try {
       console.log('video start', link)
-      window.open(link);
+      window.location.href = link;
     } catch (error) {
       console.error('Error opening video:', error);
     }
@@ -18,16 +18,16 @@ const Course_Card = (course) => {
 
 
 
+
+
   return (
-    <div  >
+    <div>
 
+      <div className=' hidden md:flex justify-between items-center w-[1200px] border-[4px] rounded-md border-richblack-300 ml-6   '>
 
-
-      <div className='  flex justify-between items-center w-[1200px] border-[4px] rounded-md border-richblack-300 ml-6   '>
-
-      {/* this is for profile image */}
+        {/* this is for profile image */}
         <div className='bg-cover   bg-center h-[13rem] w-[15rem]  border-2
-                         border-pure-greys-200'  style={{ backgroundImage: `url(${course.thumbnail}) ` }} > 
+                 border-pure-greys-200'  style={{ backgroundImage: `url(${course.thumbnail}) ` }} >
         </div>
 
 
@@ -46,13 +46,13 @@ const Course_Card = (course) => {
             <div className='bg-blue-300   blur-lg h-3'></div>
 
             <div className='flex gap-10  '>
-            <CTAButton active={"bg-yellow-100"} linkto={"login"}>View Profile</CTAButton>
-            
-            <button className='text-white  bg-caribbeangreen-400 py-2 px-5  first-letter: 
-                       rounded-md active:scale-95 hover:bg-caribbeangreen-100 top-1 '
-              onClick={() => startVideo(course.courseContent[0].Subsection[0].videoUrl)}
+              <CTAButton active={"bg-yellow-100"} linkto={"login"}>View Profile</CTAButton>
 
-            >Start Video</button>
+              <button className='text-white  bg-caribbeangreen-400 py-2 px-5  first-letter: 
+               rounded-md active:scale-95 hover:bg-caribbeangreen-100 top-1 '
+                onClick={() => startVideo(course.lectureVideo)}
+
+              >Start Video</button>
             </div>
           </div>
 
@@ -76,8 +76,45 @@ const Course_Card = (course) => {
 
 
 
-      <div className=''>
 
+
+      {/*................................ responsive design................................*/}
+
+      <div className='md:hidden w-screen '>
+        <div className='border-2 border-pure-greys-200 w-[95%] h-fit rounded-lg hover:bg-richblack-800 transition-all duration-200 '
+            onClick={()=>startVideo(course.lectureVideo)}>
+          <div className='w-[100%]  h-52'>
+              <img
+                className='w-[100%] h-[100%]'
+                src={course.thumbnail}
+              />
+          </div>
+
+          <div className='mt-2'>
+              {/* profile photo */}
+              <div className='flex items-center gap-2 '>
+                <img
+                  className='h-16 rounded-2xl ml-2 aspect-square'
+                  src={course.instructor.image}
+                />
+
+                <div>
+                  <p className='text-white  text-3xl'>{course.instructor.firstname} {course.instructor.lastname}</p>
+                </div>
+              </div>
+
+              <div className='felx flex-col gap-y-2 my-4'>
+                <p className='text-blue-200 text-3xl font-semibold pb-2 pl-2'>{course.courseName}</p>
+                
+                <p className='text-white pl-2'>Description: {course.courseDescription}</p>
+                <div className='text-white flex pl-2 '><p>Mob No : </p> <span>{course.instructor.additionDetails.contactNumber}</span></div>
+                <div className='text-white flex pl-2'><p>Email Id: </p> <span>{course.instructor.email}</span></div>
+                <div className='text-white flex pl-2'><p>Address : <span>{course.instructor.additionDetails.about}</span></p></div>
+              </div>
+
+
+          </div>
+        </div>
       </div>
 
     </div>

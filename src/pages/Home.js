@@ -21,7 +21,7 @@ const Home = () => {
         <div className='relative  flex flex-col  lg:gap-1 gap-20   text-richblack-300'>
 
             {/* section 1 */}
-            <div className='flex flex-col items-start   lg:w-11/12    '>
+            <div className='flex flex-col items-start   lg:w-11/12  '>
 
                 <div className='lg:w-screen  lg:h-screen overflow-hidden  bg-caribbeangreen-300 bg-opacity-20'>
                     <img src={landingPageImage}
@@ -45,7 +45,7 @@ const Home = () => {
 
 
             {/* .......................... section 2 .............................  */}
-            <div className='flex flex-col  items-center w-[95%] h-fit mt-72   lg:mt-24 mx-auto lg:w-11/12'>
+            <div className='flex flex-col  items-center w-[95%] h-fit mt-72 lg:pt-0 pt-32     lg:mt-24 mx-auto lg:w-11/12'>
                 <OldLandingPage  ></OldLandingPage>
 
 

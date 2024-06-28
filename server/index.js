@@ -10,7 +10,7 @@ const fileupload = require('express-fileupload');
 const cors = require('cors');
 const cookieParser =  require('cookie-parser');
 require('dotenv').config();  
-const morgan = require('morgan');
+ 
 
     
   
@@ -31,8 +31,8 @@ cloudinaryConnect()
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-            // origin: 'http://localhost:3000',
-            origin: '*',
+            origin: 'http://localhost:3000',
+            // origin: '*',
             credentials:true,
         }));
 app.use(fileupload({
@@ -40,9 +40,7 @@ app.use(fileupload({
             tempFileDir: '/tmp',
         }));    
    
-        // Use morgan for logging
-app.use(morgan('dev'));
-  
+ 
  
   
      
@@ -54,6 +52,7 @@ const courseRoutes = require('./routes/Course');
 const contactUsRoute = require("./routes/contactRoutes");  
 
  
+
 //routes handling
 app.use('/api/v1/auth', userRoutes);
 app.use('/api/v1/profile', profileRoutes);
@@ -62,7 +61,7 @@ app.use('/api/v1/course', courseRoutes);
 app.use('/api/v1/reach', contactUsRoute);      
 
     
-//default route
+// default route
 app.use('/',(req,res)=>{ 
     return res.json({
         success:true,

@@ -1,96 +1,68 @@
-import { useEffect, useState } from "react"
-import { useForm } from "react-hook-form"
-import { toast } from "react-hot-toast"
- 
-import { MdNavigateNext } from "react-icons/md"
-import { useDispatch, useSelector } from "react-redux"
-
-
-
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
+import { MdNavigateNext } from "react-icons/md";
+import { useDispatch, useSelector } from "react-redux";
 import {
   addCourseDetails,
-
   fetchCourseCategories,
-} from "../../../../../services/operations/courseDetailsAPI"
-
-import { setCourse  } from "../../../../../slices/courseSlice"
-
-import IconBtn from "../../../../common/IconBtn"
-import Upload from "../Upload"
-
-import RequirementsField from "./RequirementField"
+} from "../../../../../services/operations/courseDetailsAPI";
+import { setCourse } from "../../../../../slices/courseSlice";
+import Upload from "../Upload";
 
 export default function CourseInformationForm() {
-
   const {
     register,
     handleSubmit,
     setValue,
     getValues,
     formState: { errors },
-  } = useForm()
+  } = useForm();
 
-
-
-
-
-  const dispatch = useDispatch()
-  const { token } = useSelector((state) => state.auth)
-  const { course } = useSelector((state) => state.course)
-  const [loading, setLoading] = useState(false)
-  const [courseCategories, setCourseCategories] = useState([])
-
+  const dispatch = useDispatch();
+  const { token } = useSelector((state) => state.auth);
+  const { course } = useSelector((state) => state.course);
+  const [loading, setLoading] = useState(false);
+  const [courseCategories, setCourseCategories] = useState([]);
+  const [formSubmitting, setFormSubmitting] = useState(false);
 
   useEffect(() => {
-
     const getCategories = async () => {
-      setLoading(true)
-      const categories = await fetchCourseCategories()
+      setLoading(true);
+      const categories = await fetchCourseCategories();
       if (categories.length > 0) {
-        setCourseCategories(categories)
+        setCourseCategories(categories);
       }
-      setLoading(false)
-    }
-     
+      setLoading(false);
+    };
+    getCategories();
+  }, []);
 
-    getCategories()
-  }, [])
-
-
-
-
-
-  //   handle next button click
   const onSubmit = async (data) => {
+    setFormSubmitting(true);
+    const formData = new FormData();
+    formData.append("courseName", data.courseTitle);
+    formData.append("courseDescription", data.courseShortDesc);
+    formData.append("category", data.courseCategory);
+    formData.append("thumbnail", data.thumbnail);
+    formData.append("video", data.lectureVideo);
 
-
-    const formData = new FormData()
-
-    formData.append("courseName", data.courseTitle)
-
-    formData.append("courseDescription", data.courseShortDesc)
-
-
-    formData.append("category", data.courseCategory)
-    // formData.append("status", COURSE_STATUS.DRAFT)
-    formData.append("thumbnail", data.thumbnail[0]);
-    formData.append("video", data.lectureVideo[0]);
-    setLoading(true)
-
-
-    for (let [key, value] of formData.entries()) {
-      console.log(key, value)
+    try {
+      const result = await addCourseDetails(formData, token);
+      if(result)
+      {
+        console.log("CourseDetails", result);
+        toast.success("Course details added successfully!");
+        dispatch(setCourse(result));
+      }
     }
-
-    const result = await addCourseDetails(formData, token)
-
-    console.log('CourseDetails', result);
-
-    setLoading(false)
-  }
-
-
-
+    catch (error) {
+    toast.error("Failed to add course details.");
+    console.error("Error adding course details:", error);
+    } finally {
+      setFormSubmitting(false);
+    }
+  };
 
   return (
     <form
@@ -100,7 +72,7 @@ export default function CourseInformationForm() {
       {/* Course Title */}
       <div className="flex flex-col space-y-2">
         <label className="text-sm text-richblack-5" htmlFor="courseTitle">
-          Course Title <sup className="text-pink-200">*</sup>
+          Video Title <sup className="text-pink-200">*</sup>
         </label>
         <input
           id="courseTitle"
@@ -110,45 +82,43 @@ export default function CourseInformationForm() {
         />
         {errors.courseTitle && (
           <span className="ml-2 text-xs tracking-wide text-pink-200">
-            Course title is required
+            Video title is required
           </span>
         )}
       </div>
 
-
       {/* Course Short Description */}
       <div className="flex flex-col space-y-2">
         <label className="text-sm text-richblack-5" htmlFor="courseShortDesc">
-          Course Short Description <sup className="text-pink-200">*</sup>
+          Video Short Description <sup className="text-pink-200">*</sup>
         </label>
         <textarea
           id="courseShortDesc"
           placeholder="Enter Description"
           {...register("courseShortDesc", { required: true })}
-          className="form-style resize-x-none min-h-[130px] w-full"
+          className="form-style resize-none min-h-[130px] w-full"
         />
         {errors.courseShortDesc && (
           <span className="ml-2 text-xs tracking-wide text-pink-200">
-            Course Description is required
+            Video Description is required
           </span>
         )}
       </div>
 
-
-
       {/* Course Category */}
       <div className="flex flex-col space-y-2">
         <label className="text-sm text-richblack-5" htmlFor="courseCategory">
-          Course Category <sup className="text-pink-200">*</sup>
+          Video Category <sup className="text-pink-200">*</sup>
         </label>
         <select
           {...register("courseCategory", { required: true })}
           defaultValue=""
           id="courseCategory"
           className="form-style w-full"
+          disabled={loading}
         >
           <option value="" disabled>
-            Choose a Category
+            {loading ? "Loading categories..." : "Choose a Category"}
           </option>
           {!loading &&
             courseCategories?.map((category, indx) => (
@@ -164,46 +134,38 @@ export default function CourseInformationForm() {
         )}
       </div>
 
-
       {/* Course Thumbnail Image */}
       <Upload
         name="thumbnail"
-        label="thumbnail"
-        register={register}
-        setValue={setValue}
+        label="Thumbnail"
         errors={errors}
+        register={register}
         required={true}
+        setValue={setValue}
       />
 
       {/* Lecture Video Upload */}
       <Upload
         name="lectureVideo"
-        label="lectureVideo"
+        label="Lecture Video"
         errors={errors}
         register={register}
         required={true}
         setValue={setValue}
         video={true}
-
       />
-
-
-
-
-
-
-
-
-
 
       {/* Next Button */}
       <div className="flex justify-end gap-x-2">
-
-   
-          <button className="bg-caribbeangreen-200 py-2 px-4 rounded-md  flex justify-end gap-x-2 items-center hover:scale-95 transition-all duration-200" type="submit">Next <MdNavigateNext /></button>
-          
-     
+        <button
+          className="bg-caribbeangreen-200 py-2 px-4 rounded-md flex justify-end gap-x-2 items-center hover:scale-95 transition-all duration-200"
+          type="submit"
+          disabled={formSubmitting}
+        >
+          {formSubmitting ? "Submitting..." : "Next"}
+          <MdNavigateNext />
+        </button>
       </div>
     </form>
-  )
+  );
 }

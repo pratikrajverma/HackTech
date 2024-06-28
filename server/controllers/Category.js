@@ -61,24 +61,25 @@ const categoryPageDetails = async (req, res) => {
 	try {
 		//get gategories
 		const { categoryId } = req.body;
+		 
 
 		//get course by specified categoryId
 		const selectedCategory = await Category.findById(categoryId)
 			.populate({
 				path: "courses", 
 				populate: [  
-					{ 
+					{  
 						 path: "instructor",
 						 populate:{ path: "additionDetails" } 
 					},
-					{
-						path: "courseContent",
-						populate: { path: "Subsection" }
-					}
+					// {
+					// 	path: "courseContent",
+					// 	// populate: { path: "Subsection" }
+					// }
 				]
 			}).exec();
 
-
+ 		console.log('selectedCategory', selectedCategory);
 		//validation
 		if (!selectedCategory) {
 			return res.status(404).json({

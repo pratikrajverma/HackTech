@@ -53,6 +53,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
       
         <Route path="catalog/:catalogName" element={<Catalog />} />
+        
         {/* Open Route - for Only Non Logged in User */}
         <Route
           path="login"
@@ -62,6 +63,7 @@ function App() {
             </OpenRoute>
           }
         />
+
         <Route
           path="forgot-password"
           element={
@@ -70,6 +72,7 @@ function App() {
             </OpenRoute>
           }
         />
+
         <Route
           path="update-password/:id"
           element={
@@ -78,6 +81,7 @@ function App() {
             </OpenRoute>
           }
         />
+
         <Route
           path="signup"
           element={
@@ -86,6 +90,7 @@ function App() {
             </OpenRoute>
           }
         />
+
         <Route
           path="verify-email"
           element={

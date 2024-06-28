@@ -84,11 +84,11 @@ function Navbar() {
 
                                                     {loading ? (
                                                         <p className="text-center">Loading...</p>
-                                                    ) : subLinks.length != 0 ? (
+                                                    ) : subLinks?.length != 0 ? (
                                                         <div>
                                                             {
-                                                                subLinks.filter(
-                                                                    (subLink) => subLink.name.length > 0
+                                                                subLinks?.filter(
+                                                                    (subLink) => subLink.name?.length > 0
                                                                 )
                                                                     ?.map((subLink, i) => (
                                                                         <Link

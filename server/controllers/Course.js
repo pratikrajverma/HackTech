@@ -5,22 +5,24 @@ const { uploadImage } = require('../utils/imageUploader');
 
 //............................................create (course information) handler function...............................................
  
- 
+  
 const createCourse = async (req, res) => { 
     try {
         // Fetch data from request body
         const { courseName, courseDescription, category    } = req.body;
 
-        console.log('req.body', req.body);  
-
-        // Get files from request
-        const thumbnail = req.files && req.files.thumbnail 
-        const lectureVideo = req.files && req.files.video  
+          
+ 
+        // Get files from request 
+        const thumbnail =   req.files.thumbnail 
+        const lectureVideo =   req.files.video  
+          console.log('course data details: ', courseName, courseDescription, category, thumbnail, lectureVideo)
+        
         // Validation
         if (!courseName || !courseDescription || !category || !thumbnail || !lectureVideo) {
             return res.status(400).json({
                 success: false,
-                message: 'all fields   required for course creation',
+                message: 'all  fields are  required for course creation',
             });
         }
 
