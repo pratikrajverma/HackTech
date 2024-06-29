@@ -1,6 +1,6 @@
 
 
-import CTAButton from '../../Homepage/Button'
+// import CTAButton from '../../Homepage/Button'
 
 const Course_Card = (course) => {
   console.log("course ka data in course_card", course)
@@ -32,21 +32,23 @@ const Course_Card = (course) => {
 
 
 
-        <div className='flex flex-col   h-[12rem]  w-[30%] text-white gap-2 pb-5' >
+        <div className='flex flex-col   h-[12rem]  w-[30%] text-white gap-y-2 pb-5' >
           <h1 className='text-pure-greys-5 pt-2 text-2xl font-bold '>{`${course.instructor.firstname}  ${course.instructor.lastname}`}</h1>
 
-          <p className="text-yellow-300">{course.instructor.additionDetails.about}</p>
+          <div className='flex flex-col '>
+            <p className="text-yellow-300">{course.instructor.additionDetails.about}</p>
 
-          <p className="text-yellow-300">Mob : {course.instructor.additionDetails.contactNumber}</p>
+            <p className="text-yellow-300">Mob : {course.instructor.additionDetails.contactNumber}</p>
 
-          <p className="text-yellow-300">Email : {course.instructor.email}</p>
+            <p className="text-yellow-300">Email : {course.instructor.email}</p>
 
+          </div>
 
           <div className="  relative bottom-2 ">
             <div className='bg-blue-300   blur-lg h-3'></div>
 
-            <div className='flex gap-10  '>
-              <CTAButton active={"bg-yellow-100"} linkto={"login"}>View Profile</CTAButton>
+            <div className='flex   '>
+              {/* <CTAButton active={"bg-yellow-100"} linkto={"login"}>View Profile</CTAButton> */}
 
               <button className='text-white  bg-caribbeangreen-400 py-2 px-5  first-letter: 
                rounded-md active:scale-95 hover:bg-caribbeangreen-100 top-1 '
@@ -82,35 +84,35 @@ const Course_Card = (course) => {
 
       <div className='md:hidden w-screen '>
         <div className='border-2 border-pure-greys-200 w-[95%] h-fit rounded-lg hover:bg-richblack-800 transition-all duration-200 '
-            onClick={()=>startVideo(course.lectureVideo)}>
+          onClick={() => startVideo(course.lectureVideo)}>
           <div className='w-[100%]  h-52'>
-              <img
-                className='w-[100%] h-[100%]'
-                src={course.thumbnail}
-              />
+            <img
+              className='w-[100%] h-[100%]'
+              src={course.thumbnail}
+            />
           </div>
 
           <div className='mt-2'>
-              {/* profile photo */}
-              <div className='flex items-center gap-2 '>
-                <img
-                  className='h-16 rounded-2xl ml-2 aspect-square'
-                  src={course.instructor.image}
-                />
+            {/* profile photo */}
+            <div className='flex items-center gap-2 '>
+              <img
+                className='h-16 rounded-2xl ml-2 aspect-square'
+                src={course.instructor.image}
+              />
 
-                <div>
-                  <p className='text-white  text-3xl'>{course.instructor.firstname} {course.instructor.lastname}</p>
-                </div>
+              <div>
+                <p className='text-white  text-3xl'>{course.instructor.firstname} {course.instructor.lastname}</p>
               </div>
+            </div>
 
-              <div className='felx flex-col gap-y-2 my-4'>
-                <p className='text-blue-200 text-3xl font-semibold pb-2 pl-2'>{course.courseName}</p>
-                
-                <p className='text-white pl-2'>Description: {course.courseDescription}</p>
-                <div className='text-white flex pl-2 '><p>Mob No : </p> <span>{course.instructor.additionDetails.contactNumber}</span></div>
-                <div className='text-white flex pl-2'><p>Email Id: </p> <span>{course.instructor.email}</span></div>
-                <div className='text-white flex pl-2'><p>Address : <span>{course.instructor.additionDetails.about}</span></p></div>
-              </div>
+            <div className='felx flex-col gap-y-2 my-4'>
+              <p className='text-blue-200 text-3xl font-semibold pb-2 pl-2'>{course.courseName}</p>
+
+              <p className='text-white pl-2'>Description: {course.courseDescription}</p>
+              <div className='text-white flex pl-2 '><p>Mob No : </p> <span>{course.instructor.additionDetails.contactNumber}</span></div>
+              <div className='text-white flex pl-2'><p>Email Id: </p> <span>{course.instructor.email}</span></div>
+              <div className='text-white flex pl-2'><p>Address : <span>{course.instructor.additionDetails.about}</span></p></div>
+            </div>
 
 
           </div>

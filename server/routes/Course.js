@@ -3,7 +3,7 @@ const router = express.Router();
 
 
 const { auth, isInstructor, isStudent, isAdmin  } = require('../middleware/auth');
-const { createCourse,    getCourseDetails, showAllCourse, getInstructorCourses ,   getFullCourseDetails } = require('../controllers/Course');
+const { createCourse,    getCourseDetails, showAllCourse, getInstructorCourses ,   getFullCourseDetails ,deleteCourse } = require('../controllers/Course');
  
 const { createCategory, showAllCategories, categoryPageDetails } = require('../controllers/Category');
  
@@ -36,6 +36,10 @@ router.get("/getInstructorCourses", auth, isInstructor, getInstructorCourses)
  
 //course is listing based on category name
 router.post("/getCategoryPageDetails", categoryPageDetails)  
+
+
+// deleting course
+router.delete('/deleteCourse', auth, isInstructor, deleteCourse)
 
 
 

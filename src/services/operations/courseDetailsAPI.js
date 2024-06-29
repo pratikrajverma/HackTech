@@ -14,6 +14,8 @@ const {
   GET_ALL_INSTRUCTOR_COURSES_API,
  
   GET_FULL_COURSE_DETAILS_AUTHENTICATED,
+
+  DELETE_COURSE_API
  
 } = courseEndpoints
 
@@ -145,23 +147,27 @@ export const fetchInstructorCourses = async (token) => {
 }
 
 // delete a course
-// export const deleteCourse = async (data, token) => {
-//   const toastId = toast.loading("Loading...")
-//   try {
-//     const response = await apiConnector("DELETE", DELETE_COURSE_API, data, {
-//       Authorization: `Bearer ${token}`,
-//     })
-//     console.log("DELETE COURSE API RESPONSE............", response)
-//     if (!response?.data?.success) {
-//       throw new Error("Could Not Delete Course")
-//     }
-//     toast.success("Course Deleted")
-//   } catch (error) {
-//     console.log("DELETE COURSE API ERROR............", error)
-//     toast.error(error.message)
-//   }
-//   toast.dismiss(toastId)
-// }
+export const deleteCourse = async (data, token) => {
+  const toastId = toast.loading("Loading...")
+  try {
+    const response = await apiConnector("DELETE", DELETE_COURSE_API, data, {
+      Authorization: `Bearer ${token}`,
+    })
+
+    console.log("DELETE COURSE API RESPONSE............", response)
+
+    if (!response?.data?.success) {
+      throw new Error("Could Not Delete Course")
+    }
+
+    toast.success("Course Deleted")
+
+  } catch (error) {
+    console.log("DELETE COURSE API ERROR............", error)
+    toast.error(error.message)
+  }
+  toast.dismiss(toastId)
+}
 
 
 
